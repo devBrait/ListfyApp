@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:listfy_app/presentation/views/auth/register.dart';
+import 'package:listfy_app/presentation/views/widgets/primary_button.dart';
+import 'package:listfy_app/utils/constants.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -10,8 +12,6 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   bool _rememberMe = false;
 
   @override
@@ -23,18 +23,13 @@ class _Login extends State<Login> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                Color.fromARGB(255, 93, 63, 104),
-                Color.fromARGB(255, 62, 39, 80),
-                Color.fromARGB(255, 49, 33, 59),
-              ],
+              colors: [Constants.darkPurple, Constants.darkerPurple],
             ),
           ),
           child: SingleChildScrollView(
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height - 
-                          MediaQuery.of(context).padding.top,
+                minHeight: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
               ),
               child: IntrinsicHeight(
                 child: Padding(
@@ -53,34 +48,24 @@ class _Login extends State<Login> {
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width * 0.07,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Constants.white,
                         ),
                         textAlign: TextAlign.center,
                       ),
                       
                       const SizedBox(height: 30),
                       
-                      SizedBox(
+                      PrimaryButton(
+                        text: 'Log in with Google',
+                        onPressed: () {
+                          // Google login
+                        },
+                        fontSize: 16,
                         height: 50,
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            // Google login
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                          ),
-                          icon: const FaIcon(FontAwesomeIcons.google, size: 20, color: Colors.white),
-                          label: const Flexible(
-                            child: Text(
-                              'Log in with Google',
-                              style: TextStyle(fontSize: 16),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
+                        icon: const FaIcon(
+                          FontAwesomeIcons.google,
+                          size: 20,
+                          color: Constants.white,
                         ),
                       ),
                       
@@ -88,37 +73,27 @@ class _Login extends State<Login> {
                       
                       const Row(
                         children: [
-                          Expanded(child: Divider(color: Colors.white)),
+                          Expanded(child: Divider(color: Constants.white)),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
                               'Or log in with Email',
-                              style: TextStyle(color: Colors.white, fontSize: 14),
+                              style: TextStyle(color: Constants.white, fontSize: 14),
                             ),
                           ),
-                          Expanded(child: Divider(color: Colors.white)),
+                          Expanded(child: Divider(color: Constants.white)),
                         ],
                       ),
                       
                       const SizedBox(height: 25),
                       
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Username or Email',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
                       const SizedBox(height: 6),
                       TextField(
-                        controller: _usernameController,
                         decoration: InputDecoration(
+                          hintText: 'Enter username or email',
+                          hintStyle: const TextStyle(color: Constants.lightGray),
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Constants.white,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(18),
                             borderSide: BorderSide.none,
@@ -133,27 +108,19 @@ class _Login extends State<Login> {
                       const SizedBox(height: 16),
                       
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          const Text(
-                            'Password',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
                           GestureDetector(
                             onTap: () {
                               // Implement forgot password
                             },
                             child: const Text(
-                              'Forgot?',
+                              'Forgot password?',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Constants.white,
                                 fontSize: 14,
                                 decoration: TextDecoration.underline,
-                                decorationColor: Colors.white
+                                decorationColor: Constants.white,
                               ),
                             ),
                           ),
@@ -162,11 +129,12 @@ class _Login extends State<Login> {
                       const SizedBox(height: 6),
 
                       TextField(
-                        controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
+                          hintText: 'Enter password',
+                          hintStyle: const TextStyle(color: Constants.lightGray),
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Constants.white,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(18),
                             borderSide: BorderSide.none,
@@ -192,9 +160,9 @@ class _Login extends State<Login> {
                                   _rememberMe = value ?? false;
                                 });
                               },
-                              activeColor: Colors.white,
-                              checkColor: const Color.fromARGB(255, 93, 63, 104),
-                              side: const BorderSide(color: Colors.white),
+                              activeColor: Constants.white,
+                              checkColor: Constants.darkPurple,
+                              side: const BorderSide(color: Constants.white),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(6),
                               ),
@@ -205,7 +173,7 @@ class _Login extends State<Login> {
                             child: Text(
                               'Remember me',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Constants.white,
                                 fontSize: 14,
                               ),
                             ),
@@ -214,26 +182,15 @@ class _Login extends State<Login> {
                       ),
                       
                       const SizedBox(height: 30),
-                      
-                      SizedBox(
+
+                      PrimaryButton(
                         width: double.infinity,
-                        height: 50, 
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Implement login
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                          ),
-                          child: const Text(
-                            'Log in',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
+                        height: 50,
+                        text: 'Log in',
+                        fontSize: 16,
+                        onPressed: () {
+                          // Implement log in logic
+                        }
                       ),
                       
                       const SizedBox(height: 20),
@@ -243,7 +200,7 @@ class _Login extends State<Login> {
                           const Text(
                             "Don't have an account?",
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Constants.lightGray,
                               fontSize: 14,
                             ),
                             textAlign: TextAlign.center,
@@ -261,11 +218,11 @@ class _Login extends State<Login> {
                             child: const Text(
                               'Sign up',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Constants.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                                 decoration: TextDecoration.underline,
-                                decorationColor: Colors.white,
+                                decorationColor: Constants.white,
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -284,12 +241,5 @@ class _Login extends State<Login> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
-    super.dispose();
   }
 }

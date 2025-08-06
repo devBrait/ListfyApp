@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:listfy_app/presentation/views/auth/login.dart';
+import 'package:listfy_app/utils/constants.dart';
 
 class LoginPrompt extends StatelessWidget {
   const LoginPrompt({super.key});
@@ -12,7 +13,7 @@ class LoginPrompt extends StatelessWidget {
         Text(
           'Already have an account? ',
           style: TextStyle(
-            color: Colors.white,
+            color: Constants.lightGray,
             fontSize: 16,
           ),
         ),
@@ -23,11 +24,11 @@ class LoginPrompt extends StatelessWidget {
           child: Text(
             'Login',
             style: TextStyle(
-              color: Colors.white,
+              color: Constants.white,
               fontSize: 16,
               fontWeight: FontWeight.w600,
               decoration: TextDecoration.underline,
-              decorationColor: Colors.white,
+              decorationColor: Constants.white,
             ),
           ),
         ),

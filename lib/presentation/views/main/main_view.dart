@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:listfy_app/utils/constants.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -10,28 +11,13 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   int _currentIndex = 0;
-
-  // Default Colors
-  static const Color _primaryPurple = Color.fromARGB(255, 93, 63, 104);
-  static const Color _gradientPurple = Color.fromARGB(255, 127, 99, 138);
-  static const Color _mediumPurple = Color.fromARGB(255, 62, 39, 80);
-  static const Color _darkPurple = Color.fromARGB(255, 49, 33, 59);
-  static const Color _backgroundColor = Colors.black;
-  static const Color _white = Colors.white;
-  
-  // Color with Opacity
-  static const Color _lightGray = Color.fromARGB(255, 180, 180, 180);
-  static const Color _mediumGray = Color.fromARGB(255, 140, 140, 140);
-  static const Color _purpleTransparent = Color.fromARGB(51, 93, 63, 104); // ~20% opacity
-  static const Color _whiteTransparent = Color.fromARGB(51, 255, 255, 255); // ~20% opacity
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     
     return Scaffold(
-      backgroundColor: _backgroundColor,
+      backgroundColor: Constants.black,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -67,13 +53,13 @@ class _MainViewState extends State<MainView> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             gradient: const LinearGradient(
-              colors: [_darkPurple, Color.fromARGB(255, 53, 42, 61)],
+              colors: [Constants.darkPurple, Constants.darkPurple],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             boxShadow: [
               BoxShadow(
-                color: _purpleTransparent,
+                color: Constants.purpleTransparent,
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -81,7 +67,7 @@ class _MainViewState extends State<MainView> {
           ),
           child: Icon(
             FontAwesomeIcons.circleUser,
-            color: _lightGray,
+            color: Constants.lightGray,
             size: screenWidth * 0.07,
           ),
         ),
@@ -95,7 +81,7 @@ class _MainViewState extends State<MainView> {
               Text(
                 'Hello,',
                 style: TextStyle(
-                  color: _lightGray,
+                  color: Constants.lightGray,
                   fontSize: screenWidth * 0.045,
                   fontWeight: FontWeight.w300,
                 ),
@@ -103,7 +89,7 @@ class _MainViewState extends State<MainView> {
               Text(
                 'João!',
                 style: TextStyle(
-                  color: _white,
+                  color: Constants.white,
                   fontSize: screenWidth * 0.05,
                   fontWeight: FontWeight.w500,
                 ),
@@ -116,7 +102,7 @@ class _MainViewState extends State<MainView> {
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [_darkPurple, Color.fromARGB(255, 53, 42, 61)],
+              colors: [Constants.darkPurple, Constants.darkerPurple],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -124,7 +110,7 @@ class _MainViewState extends State<MainView> {
           ),
           child: Icon(
             FontAwesomeIcons.bell,
-            color: _lightGray,
+            color: Constants.lightGray,
             size: screenWidth * 0.06,
           ),
         ),
@@ -138,24 +124,24 @@ class _MainViewState extends State<MainView> {
         color: Colors.black,
         borderRadius: BorderRadius.circular(25),
         border: Border.all(
-          color: _darkPurple,
+          color: Constants.darkPurple,
           width: 1.5,
         ),
       ),
       child: TextField(
         style: TextStyle(
-          color: _white,
+          color: Constants.white,
           fontSize: screenWidth * 0.04,
         ),
         decoration: InputDecoration(
           hintText: 'Search',
           hintStyle: TextStyle(
-            color: _mediumGray,
+            color: Constants.mediumGray,
             fontSize: screenWidth * 0.04,
           ),
           prefixIcon: Icon(
             FontAwesomeIcons.magnifyingGlass,
-            color: _darkPurple,
+            color: Constants.darkPurple,
             size: screenWidth * 0.06,
           ),
           border: InputBorder.none,
@@ -216,18 +202,18 @@ class _MainViewState extends State<MainView> {
       height: screenHeight * 0.15,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [_darkPurple, Color.fromARGB(255, 53, 42, 61)],
+          colors: [Constants.darkPurple, Constants.darkerPurple],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: _darkPurple,
+          color: Constants.darkPurple,
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: _purpleTransparent,
+            color: Constants.purpleTransparent,
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -241,12 +227,12 @@ class _MainViewState extends State<MainView> {
             Container(
               padding: EdgeInsets.all(screenWidth * 0.02),
               decoration: BoxDecoration(
-                color: _purpleTransparent,
+                color: Constants.purpleTransparent,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
                 icon,
-                color: _lightGray,
+                color: Constants.lightGray,
                 size: screenWidth * 0.06,
               ),
             ),
@@ -257,7 +243,7 @@ class _MainViewState extends State<MainView> {
                   child: Text(
                     title,
                     style: TextStyle(
-                      color: _white,
+                      color: Constants.white,
                       fontSize: screenWidth * 0.04,
                       fontWeight: FontWeight.w500,
                     ),
@@ -266,7 +252,7 @@ class _MainViewState extends State<MainView> {
                 if (hasIcon)
                   Icon(
                     FontAwesomeIcons.star,
-                    color: _lightGray,
+                    color: Constants.lightGray,
                     size: screenWidth * 0.05,
                   ),
               ],
@@ -283,14 +269,14 @@ class _MainViewState extends State<MainView> {
       height: screenHeight * 0.15,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [_darkPurple, Color.fromARGB(255, 53, 42, 61)],
+          colors: [Constants.darkPurple, Constants.darkerPurple],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: _purpleTransparent,
+            color: Constants.purpleTransparent,
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -298,7 +284,7 @@ class _MainViewState extends State<MainView> {
       ),
       child: Icon(
         FontAwesomeIcons.plus,
-        color: _lightGray,
+        color: Constants.lightGray,
         size: screenWidth * 0.08,
       ),
     );
@@ -310,18 +296,18 @@ class _MainViewState extends State<MainView> {
       height: screenHeight * 0.18,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [_darkPurple, Color.fromARGB(255, 53, 42, 61)],
+          colors: [Constants.darkPurple, Constants.darkerPurple],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: _primaryPurple,
+          color: Constants.primaryPurple,
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: _purpleTransparent,
+            color: Constants.purpleTransparent,
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -335,14 +321,14 @@ class _MainViewState extends State<MainView> {
               children: [
                 Icon(
                   FontAwesomeIcons.bars,
-                  color: _lightGray,
+                  color: Constants.lightGray,
                   size: screenWidth * 0.1,
                 ),
                 SizedBox(height: screenHeight * 0.01),
                 Text(
                   'See all lists',
                   style: TextStyle(
-                    color: _white,
+                    color: Constants.white,
                     fontSize: screenWidth * 0.045,
                     fontWeight: FontWeight.w400,
                   ),
@@ -350,7 +336,7 @@ class _MainViewState extends State<MainView> {
                 Text(
                   'Manage all your lists here',
                   style: TextStyle(
-                    color: _lightGray,
+                    color: Constants.lightGray,
                     fontSize: screenWidth * 0.035,
                     fontWeight: FontWeight.w300,
                   ),
@@ -364,12 +350,12 @@ class _MainViewState extends State<MainView> {
             child: Container(
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color: _purpleTransparent,
+                color: Constants.purpleTransparent,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
                 FontAwesomeIcons.angleRight,
-                color: _lightGray,
+                color: Constants.lightGray,
                 size: screenWidth * 0.04,
               ),
             ),
@@ -383,7 +369,7 @@ class _MainViewState extends State<MainView> {
     return Container(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [_darkPurple, Color.fromARGB(255, 53, 42, 61)],
+          colors: [Constants.darkPurple, Constants.darkerPurple],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -393,7 +379,7 @@ class _MainViewState extends State<MainView> {
         ),
         boxShadow: [
           BoxShadow(
-            color: _purpleTransparent,
+            color: Constants.purpleTransparent,
             blurRadius: 15,
             offset: const Offset(0, -3),
           ),
@@ -414,8 +400,8 @@ class _MainViewState extends State<MainView> {
               _currentIndex = index;
             });
           },
-          selectedItemColor: _gradientPurple,
-          unselectedItemColor: _lightGray,
+          selectedItemColor: Constants.whitePurple,
+          unselectedItemColor: Constants.lightGray,
           selectedFontSize: 0,
           unselectedFontSize: 0,
           items: [
@@ -424,10 +410,10 @@ class _MainViewState extends State<MainView> {
               activeIcon: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _purpleTransparent,
+                  color: Constants.purpleTransparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(FontAwesomeIcons.house, size: 28, color: _gradientPurple),
+                child: Icon(FontAwesomeIcons.house, size: 28, color: Constants.whitePurple),
               ),
               label: '',
             ),
@@ -436,10 +422,10 @@ class _MainViewState extends State<MainView> {
               activeIcon: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _purpleTransparent,
+                  color: Constants.purpleTransparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(FontAwesomeIcons.plus, size: 28, color: _gradientPurple),
+                child: Icon(FontAwesomeIcons.plus, size: 28, color: Constants.whitePurple),
               ),
               label: '',
             ),
@@ -448,10 +434,10 @@ class _MainViewState extends State<MainView> {
               activeIcon: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _purpleTransparent,
+                  color: Constants.purpleTransparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(FontAwesomeIcons.gear, size: 28, color: _gradientPurple),
+                child: Icon(FontAwesomeIcons.gear, size: 28, color: Constants.whitePurple),
               ),
               label: '',
             ),
