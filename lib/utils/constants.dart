@@ -19,4 +19,6 @@ class Constants {
   static const Color purpleTransparent = Color.fromARGB(51, 93, 63, 104);
 
   static const Color whiteTransparent = Color.fromARGB(51, 255, 255, 255);
+
+  static const Color transparent= Color.fromARGB(0, 0, 0, 0);
 }
