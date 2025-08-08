@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:listfy_app/presentation/views/auth/login.dart';
 import 'package:listfy_app/utils/constants.dart';
 
-class LoginPrompt extends StatelessWidget {
-  const LoginPrompt({super.key});
+class AuthPrompt extends StatelessWidget {
+  final String promptText;
+  final String actionText;
+  final VoidCallback onTap;
+
+  const AuthPrompt({
+    super.key,
+    required this.promptText,
+    required this.actionText,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,22 +19,19 @@ class LoginPrompt extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Already have an account? ',
-          style: TextStyle(
+          promptText,
+          style: const TextStyle(
             color: Constants.lightGray,
             fontSize: 16,
           ),
         ),
         GestureDetector(
-          onTap: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => const Login(),)); 
-          },
+          onTap: onTap,
           child: Text(
-            'Login',
-            style: TextStyle(
+            actionText,
+            style: const TextStyle(
               color: Constants.white,
               fontSize: 16,
-              fontWeight: FontWeight.w600,
               decoration: TextDecoration.underline,
               decorationColor: Constants.white,
             ),

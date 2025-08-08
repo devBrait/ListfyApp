@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:listfy_app/presentation/views/auth/register.dart';
+import 'package:listfy_app/presentation/views/widgets/auth_prompt.dart';
+import 'package:listfy_app/presentation/views/widgets/custom_text_field.dart';
+import 'package:listfy_app/presentation/views/widgets/labeled_checkbox.dart';
 import 'package:listfy_app/presentation/views/widgets/primary_button.dart';
 import 'package:listfy_app/utils/constants.dart';
 
@@ -10,7 +13,6 @@ class Login extends StatefulWidget {
   @override
   State<Login> createState() => _Login();
 }
-
 class _Login extends State<Login> {
   bool _rememberMe = false;
 
@@ -85,24 +87,11 @@ class _Login extends State<Login> {
                         ],
                       ),
                       
-                      const SizedBox(height: 25),
-                      
-                      const SizedBox(height: 6),
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Enter username or email',
-                          hintStyle: const TextStyle(color: Constants.lightGray),
-                          filled: true,
-                          fillColor: Constants.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                        ),
+                      const SizedBox(height: 30),
+                  
+                      CustomTextField(
+                        hintText: 'Enter username or email',
+                        keyboardType: TextInputType.text,
                       ),
                       
                       const SizedBox(height: 16),
@@ -126,59 +115,24 @@ class _Login extends State<Login> {
                           ),
                         ],
                       ),
+
                       const SizedBox(height: 6),
 
-                      TextField(
+                      CustomTextField(
+                        hintText: 'Enter password',
                         obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: 'Enter password',
-                          hintStyle: const TextStyle(color: Constants.lightGray),
-                          filled: true,
-                          fillColor: Constants.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16, 
-                          ),
-                        ),
                       ),
                       
                       const SizedBox(height: 16),
                       
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: 24,
-                            width: 24,
-                            child: Checkbox(
-                              value: _rememberMe,
-                              onChanged: (value) {
-                                setState(() {
-                                  _rememberMe = value ?? false;
-                                });
-                              },
-                              activeColor: Constants.white,
-                              checkColor: Constants.darkPurple,
-                              side: const BorderSide(color: Constants.white),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Flexible(
-                            child: Text(
-                              'Remember me',
-                              style: TextStyle(
-                                color: Constants.white,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                        ],
+                      LabeledCheckbox(
+                        value: _rememberMe,
+                        onChanged: (value) {
+                          setState(() {
+                            _rememberMe = value ?? false;
+                          });
+                        },
+                        label: 'Remember me',
                       ),
                       
                       const SizedBox(height: 30),
@@ -193,45 +147,18 @@ class _Login extends State<Login> {
                         }
                       ),
                       
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 18),
                       
-                      Column(
-                        children: [
-                          const Text(
-                            "Don't have an account?",
-                            style: TextStyle(
-                              color: Constants.lightGray,
-                              fontSize: 14,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 5),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context, 
-                                MaterialPageRoute(
-                                  builder: (context) => const Register(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              'Sign up',
-                              style: TextStyle(
-                                color: Constants.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Constants.white,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
+                      AuthPrompt(
+                        promptText: 'Don\'t have an account? ',
+                        actionText: 'Sign up',
+                        onTap: () {
+                          Navigator.pushReplacement(context, 
+                          MaterialPageRoute(builder:(context) => const Register(),));
+                        },
                       ),
-                      
-                      // Espaço flexível no final
-                      const Flexible(child: SizedBox(height: 20)),
+
+                      const Spacer(flex: 1),
                     ],
                   ),
                 ),

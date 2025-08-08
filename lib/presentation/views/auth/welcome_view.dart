@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:listfy_app/presentation/views/auth/login.dart';
 import 'package:listfy_app/presentation/views/auth/register.dart';
-import 'package:listfy_app/presentation/views/widgets/login_prompt.dart';
+import 'package:listfy_app/presentation/views/widgets/auth_prompt.dart';
 import 'package:listfy_app/presentation/views/widgets/primary_button.dart';
 import 'package:listfy_app/utils/constants.dart';
 
@@ -53,7 +54,15 @@ class WelcomeView extends StatelessWidget {
                 ),
         
                 const SizedBox(height: 16),
-                const LoginPrompt(),
+
+                AuthPrompt(
+                  promptText: 'Already have an account? ',
+                  actionText: 'Login',
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => const Login(),));
+                  },
+                ),
+                
                 const Spacer(flex: 1),
               ],
             ),

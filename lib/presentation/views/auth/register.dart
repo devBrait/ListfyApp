@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:listfy_app/presentation/views/auth/login.dart';
+import 'package:listfy_app/presentation/views/widgets/auth_prompt.dart';
+import 'package:listfy_app/presentation/views/widgets/custom_text_field.dart';
+import 'package:listfy_app/presentation/views/widgets/labeled_checkbox.dart';
 import 'package:listfy_app/presentation/views/widgets/primary_button.dart';
 import 'package:listfy_app/utils/constants.dart';
 
@@ -88,116 +91,43 @@ class _Register extends State<Register> {
                       
                       const SizedBox(height: 20),
                       
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Enter your name',
-                          hintStyle: const TextStyle(color: Constants.lightGray),
-                          filled: true,
-                          fillColor: Constants.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                        ),
+                      CustomTextField(
+                        hintText: 'Enter name',
+                        keyboardType: TextInputType.name,
+                      ),
+
+                      const SizedBox(height: 12),
+                      
+                      CustomTextField(
+                        hintText: 'Enter username',
+                        keyboardType: TextInputType.text,
                       ),
                       
                       const SizedBox(height: 12),
                       
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Enter username',
-                          hintStyle: const TextStyle(color: Constants.lightGray),
-                          filled: true,
-                          fillColor: Constants.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                        ),
-                      ),
-                      
-                      const SizedBox(height: 12),
-                      
-                      TextField(
+                      CustomTextField(
+                        hintText: 'Enter email',
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          hintText: 'Enter Email',
-                          hintStyle: const TextStyle(color: Constants.lightGray),
-                          filled: true,
-                          fillColor: Constants.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                        ),
                       ),
                       
                       const SizedBox(height: 12),
                       
-                      TextField(
+                      CustomTextField(
+                        hintText: 'Enter password',
                         obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: 'Enter password',
-                          hintStyle: const TextStyle(color: Constants.lightGray),
-                          filled: true,
-                          fillColor: Constants.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                        ),
                       ),
                       
                       const SizedBox(height: 12),
                       
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 24,
-                            width: 24,
-                            child: Checkbox(
-                              value: _agreeTerms,
-                              onChanged: (value) {
-                                setState(() {
-                                  _agreeTerms = value ?? false;
-                                });
-                              },
-                              activeColor: Constants.white,
-                              checkColor: Constants.darkPurple,
-                              side: const BorderSide(color: Constants.white),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Expanded(
-                            child: Text(
-                              'I agree with the Terms of Service and Privacy policy',
-                              style: TextStyle(
-                                color: Constants.white,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                        ],
+                      LabeledCheckbox(
+                        value: _agreeTerms,
+                        onChanged: (value) {
+                          setState(() {
+                            _agreeTerms = value ?? false;
+                          });
+                        },
+                        label: 'I agree with the Terms of Service and Privacy policy',
+                        fontSize: 14,
                       ),
                       
                       const SizedBox(height: 20),
@@ -214,43 +144,20 @@ class _Register extends State<Register> {
 
                       const SizedBox(height: 15),
 
-                      Column(
-                        children: [
-                          const Text(
-                            "Already have an account?",
-                            style: TextStyle(
-                              color: Constants.lightGray,
-                              fontSize: 14,
+                      AuthPrompt(
+                        promptText: 'Already have an account? ',
+                        actionText: 'Login',
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Login(),
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 5),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context, 
-                                MaterialPageRoute(
-                                  builder: (context) => const Login(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              'Login',
-                              style: TextStyle(
-                                color: Constants.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Constants.white,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
+                          );
+                        }
                       ),
-                      
-                      // Espaço flexível no final
-                      const Flexible(child: SizedBox(height: 2)),
+
+                      const Spacer(flex: 1),
                     ],
                   ),
                 ),
